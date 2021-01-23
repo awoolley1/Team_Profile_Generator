@@ -1,7 +1,9 @@
 // Include packages needed for this application
 const fs = require("fs");
 const inquirer = require("inquirer");
+const jest = require("jest")
 const generateHTML = require("./utils/generateMarkdown")
+
 
 function init() {
   inquirer
