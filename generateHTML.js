@@ -1,14 +1,14 @@
 
 function generateHTML(responses, responseArray) {
 
-  var lastDisplay;
-  if (studentType=="Manager"){
-    lastDisplay="Office Number:"
-  } else if (studentType=="Engineer"){
-    lastDisplay="GitHub Username:"
-  } else if (studentType=="Intern"){
-    lastDisplay="School Attending:"
-  }
+  // var lastDisplay;
+  // if (studentType=="Manager"){
+  //   lastDisplay="Office Number:"
+  // } else if (studentType=="Engineer"){
+  //   lastDisplay="GitHub Username:"
+  // } else if (studentType=="Intern"){
+  //   lastDisplay="School Attending:"
+  // }
 
   // var nameDisplay;
   // if (studentType=="Manager"){
@@ -56,7 +56,7 @@ for (let i = 0; i < responseArray.length; index++) {
             <ul class="list-group list-group-flush">
               <li class="list-group-item">ID: ${responseArray[(i+1)]}</li>
               <li class="list-group-item"><a href = "mailto: ${responseArray[(i+2)]}">Email: ${responseArray[(i+2)]}</a></li>
-              <li class="list-group-item">${lastDisplay}: ${responseArray[(i+3)]}</li>
+              <li class="list-group-item">Other: ${responseArray[(i+3)]}</li>
             </ul>
           </div>
     
