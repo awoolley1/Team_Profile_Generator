@@ -105,7 +105,7 @@ function init() {
         studentTypeArray = internQuestions;
       } else {
         data = generateHTML(responses, allEmployees);
-
+        console.log(data)
         fs.writeFile("index.html", data, function (error) {
           if (error) {
             console.log(error);
@@ -116,7 +116,7 @@ function init() {
       }
       inquirer.prompt(studentTypeArray)
       .then(function (responses) {
-        var studentType = responses.decisiontree
+        studentType = responses.decisiontree
         if (studentType=="Manager"){
           var Manager1 = new Manager (managername, managerid, manageremail, manageroffice)
           allEmployees.push(Manager1)
@@ -126,6 +126,8 @@ function init() {
         } else if (studentType=="Intern"){
           var Intern1 = new Intern (internname, internid, internemail, interngithub)
           allEmployees.push(Intern1) 
+        } else {
+
         }
         init()
       })
