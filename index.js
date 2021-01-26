@@ -4,14 +4,16 @@ const jest = require("jest");
 const generateHTML = require("./generateHTML");
 const Employee = require("./library/Employee");
 const Manager = require("./library/Manager");
-const Engineer = require("./library/Manager");
+const Engineer = require("./library/Engineer");
 const Intern = require("./library/Intern");
-//require 4 tests 
+//require 4 tests
 const EmployeeTest = require("./tests/Employee.test");
 const ManagerTest = require("./tests/Manager.test");
 const EngineerTest = require("./tests/Engineer.test");
 const InternTest = require("./tests/Intern.test");
+var studentType;
 
+const allEmployees = [];
 
 const managerQuestions = [
   {
@@ -34,7 +36,7 @@ const managerQuestions = [
     name: "manageroffice",
     message: "Enter manager's office number:",
   },
-]
+];
 
 const engineerQuestions = [
   {
@@ -57,7 +59,7 @@ const engineerQuestions = [
     name: "engineergithub",
     message: "Enter engineer's GitHub Username:",
   },
-]
+];
 
 const internQuestions = [
   {
@@ -80,45 +82,53 @@ const internQuestions = [
     name: "internschool",
     message: "Enter intern's school:",
   },
-]
-
+];
 
 function init() {
   inquirer
     .prompt([
-      // {
-      //   type: "input",
-      //   name: "ManagerName",
-      //   message: "Enter manager's name:",
-      // },
-      // {
-      //   type: "input",
-      //   name: "ManagerID",
-      //   message: "Enter manager's employee ID:",
-      // },
-      // {
-      //   type: "input",
-      //   name: "ManagerEmail",
-      //   message: "Enter manager's email address:",
-      // },
-      // {
-      //   type: "input",
-      //   name: "ManagerOffice",
-      //   message: "Enter manager's office number:",
-      // },
-  
+      {
+        type: "list",
+        name: "decisiontree",
+        message: "What type of employee do you want to input",
+        choices: ["Manager", "Engineer", "Intern", "DONE"],
+      },
     ])
     .then(function (responses) {
+      var studentTypeArray;
 
-      data = generateHTML(responses);
+      if (responses.decisiontree == "Manager") {
+        studentTypeArray = managerQuestions;
+      } else if (responses.decisiontree == "Engineer") {
+        studentTypeArray = engineerQuestions;
+      } else if (responses.decisiontree == "Intern") {
+        studentTypeArray = internQuestions;
+      } else {
+        data = generateHTML(responses);
 
-      fs.writeFile("index.html", data, function (error) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("no error");
+        fs.writeFile("index.html", data, function (error) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("no error");
+          }
+        });
+      }
+      inquirer.prompt(studentTypeArray)
+      .then(function (responses) {
+        var studentType = responses.decisiontree
+        if (studentType=="Manager"){
+          var Manager1 = new Manager (managername, managerid, manageremail, manageroffice)
+          allEmployees.push(Manager1)
+        } else if (studentType=="Engineer"){
+          var Engineer1 = new Engineer (engineername, engineererid, engineeremail, engineergithub)
+          allEmployees.push(Engineer1) 
+        } else if (studentType=="Intern"){
+          var Intern1 = new Intern (internname, internid, internemail, interngithub)
+          allEmployees.push(Intern1) 
         }
-      });
+        init()
+      })
     });
 }
 
