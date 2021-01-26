@@ -1,13 +1,16 @@
-// Include packages needed for this application
 const fs = require("fs");
 const inquirer = require("inquirer");
-const jest = require("jest")
-const generateHTML = require("./generateHTML")
-const Employee = require("./library/Employee")
-const Manager = require("./library/Manager")
-const Engineer = require("./library/Manager")
-const Intern = require("./library/Intern")
-
+const jest = require("jest");
+const generateHTML = require("./generateHTML");
+const Employee = require("./library/Employee");
+const Manager = require("./library/Manager");
+const Engineer = require("./library/Manager");
+const Intern = require("./library/Intern");
+//require 4 tests 
+const EmployeeTest = require("./tests/Employee.test");
+const ManagerTest = require("./tests/Manager.test");
+const EngineerTest = require("./tests/Engineer.test");
+const InternTest = require("./tests/Intern.test");
 
 
 const managerQuestions = [
