@@ -104,7 +104,7 @@ function init() {
       } else if (responses.decisiontree == "Intern") {
         studentTypeArray = internQuestions;
       } else {
-        data = generateHTML(responses);
+        data = generateHTML(responses, allEmployees);
 
         fs.writeFile("index.html", data, function (error) {
           if (error) {
