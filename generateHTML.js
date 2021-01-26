@@ -10,32 +10,32 @@ function generateHTML(responses, responseArray) {
     lastDisplay="School Attending:"
   }
 
-  var nameDisplay;
-  if (studentType=="Manager"){
-    nameDisplay=responses.managername
-  } else if (studentType=="Engineer"){
-    nameDisplay=responses.engineername
-  } else if (studentType=="Intern"){
-    nameDisplay=responses.internname
-  }
+  // var nameDisplay;
+  // if (studentType=="Manager"){
+  //   nameDisplay=responses.managername
+  // } else if (studentType=="Engineer"){
+  //   nameDisplay=responses.engineername
+  // } else if (studentType=="Intern"){
+  //   nameDisplay=responses.internname
+  // }
 
-  var idDisplay;
-  if (studentType=="Manager"){
-    idDisplay=responses.managername
-  } else if (studentType=="Engineer"){
-    idDisplay=responses.engineername
-  } else if (studentType=="Intern"){
-    idDisplay=responses.internname
-  }
+  // var idDisplay;
+  // if (studentType=="Manager"){
+  //   idDisplay=responses.managername
+  // } else if (studentType=="Engineer"){
+  //   idDisplay=responses.engineername
+  // } else if (studentType=="Intern"){
+  //   idDisplay=responses.internname
+  // }
 
-  var emailDisplay;
-  if (studentType=="Manager"){
-    emailDisplay=responses.manageremail
-  } else if (studentType=="Engineer"){
-    emailDisplay=responses.engineeremail
-  } else if (studentType=="Intern"){
-    emailDisplay=responses.internemail
-  }
+  // var emailDisplay;
+  // if (studentType=="Manager"){
+  //   emailDisplay=responses.manageremail
+  // } else if (studentType=="Engineer"){
+  //   emailDisplay=responses.engineeremail
+  // } else if (studentType=="Intern"){
+  //   emailDisplay=responses.internemail
+  // }
 
 for (let i = 0; i < responseArray.length; index++) {
     return `
@@ -50,13 +50,13 @@ for (let i = 0; i < responseArray.length; index++) {
     <body>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">Name:</h5>
+              <h5 class="card-title">Name: ${responseArray[i]}</h5>
               <p class="card-text">Role: </p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID:</li>
-              <li class="list-group-item">Email:</li>
-              <li class="list-group-item">${lastDisplay}:</li>
+              <li class="list-group-item">ID: ${responseArray[(i+1)]}</li>
+              <li class="list-group-item"><a href = "mailto: ${responseArray[(i+2)]}">Email: ${responseArray[(i+2)]}</a></li>
+              <li class="list-group-item">${lastDisplay}: ${responseArray[(i+3)]}</li>
             </ul>
           </div>
     
