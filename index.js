@@ -104,8 +104,9 @@ function init() {
       } else if (responses.decisiontree == "Intern") {
         studentTypeArray = internQuestions;
       } else {
-        data = generateHTML(responses, allEmployees);
-        console.log(data)
+        studentTypeArray = "Done";
+        data = generateHTML(allEmployees);
+        console.log(data);
         fs.writeFile("index.html", data, function (error) {
           if (error) {
             console.log(error);
@@ -114,23 +115,39 @@ function init() {
           }
         });
       }
-      inquirer.prompt(studentTypeArray)
-      .then(function (responses) {
-        studentType = responses.decisiontree
-        if (studentType=="Manager"){
-          var Manager1 = new Manager (managername, managerid, manageremail, manageroffice)
-          allEmployees.push(Manager1)
-        } else if (studentType=="Engineer"){
-          var Engineer1 = new Engineer (engineername, engineererid, engineeremail, engineergithub)
-          allEmployees.push(Engineer1) 
-        } else if (studentType=="Intern"){
-          var Intern1 = new Intern (internname, internid, internemail, interngithub)
-          allEmployees.push(Intern1) 
-        } else {
 
-        }
-        init()
-      })
+      if (studentTypeArray !== "Done") {
+        inquirer.prompt(studentTypeArray).then(function (responses) {
+          studentType = responses.decisiontree;
+          if (studentType == "Manager") {
+            var Manager1 = new Manager(
+              managername,
+              managerid,
+              manageremail,
+              manageroffice
+            );
+            allEmployees.push(Manager1);
+          } else if (studentType == "Engineer") {
+            var Engineer1 = new Engineer(
+              engineername,
+              engineererid,
+              engineeremail,
+              engineergithub
+            );
+            allEmployees.push(Engineer1);
+          } else if (studentType == "Intern") {
+            var Intern1 = new Intern(
+              internname,
+              internid,
+              internemail,
+              interngithub
+            );
+            allEmployees.push(Intern1);
+          } else {
+          }
+          init();
+        });
+      }
     });
 }
 
