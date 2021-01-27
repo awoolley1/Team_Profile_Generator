@@ -106,7 +106,6 @@ function init() {
       } else {
         studentTypeArray = "Done";
         data = generateHTML(allEmployees);
-        console.log(data);
         fs.writeFile("index.html", data, function (error) {
           if (error) {
             console.log(error);
@@ -121,30 +120,30 @@ function init() {
           studentType = responses.decisiontree;
           if (studentType == "Manager") {
             var Manager1 = new Manager(
-              managername,
-              managerid,
-              manageremail,
-              manageroffice
+              responses.managername,
+              responses.managerid,
+              responses.manageremail,
+              responses.manageroffice
             );
             allEmployees.push(Manager1);
           } else if (studentType == "Engineer") {
             var Engineer1 = new Engineer(
-              engineername,
-              engineererid,
-              engineeremail,
-              engineergithub
+              responses.engineername,
+              responses.engineererid,
+              responses.engineeremail,
+              responses.engineergithub
             );
             allEmployees.push(Engineer1);
           } else if (studentType == "Intern") {
             var Intern1 = new Intern(
-              internname,
-              internid,
-              internemail,
-              interngithub
+              responses.internname,
+              responses.internid,
+              responses.internemail,
+              responses.interngithub
             );
             allEmployees.push(Intern1);
-          } else {
-          }
+          } 
+          console.log(allEmployees)
           init();
         });
       }
