@@ -1,105 +1,118 @@
+// create the team
+const generateTeam = team => {
 
-function generateHTML(responses, responseArray) {
+    // create the manager html
+    const generateManager = manager => {
+        return `
+        <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="card-title">${manager.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${manager.getId()}</li>
+                <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}}">${manager.getEmail()}</a></li>
+                <li class="list-group-item">Office number: ${manager.getOfficeNumber()}}</li>
+            </ul>
+        </div>
+    </div>
+        `;
+    };
 
-  // var lastDisplay;
-  // if (studentType=="Manager"){
-  //   lastDisplay="Office Number:"
-  // } else if (studentType=="Engineer"){
-  //   lastDisplay="GitHub Username:"
-  // } else if (studentType=="Intern"){
-  //   lastDisplay="School Attending:"
-  // }
+    // create the html for engineers
+    const generateEngineer = engineer => {
+        return `
+        <div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">${engineer.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getRole()}</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: ${engineer.getId()}</li>
+            <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank" rel="noopener noreferrer">${engineer.getGithub()}</a></li>
+        </ul>
+    </div>
+</div>
+        `;
+    };
 
+    // create the html for interns
+    const generateIntern = intern => {
+        return `
+        <div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">${intern.getName()}</h2>
+        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ id }}</li>
+            <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+            <li class="list-group-item">School: ${intern.getSchool()}</li>
+        </ul>
+    </div>
+</div>
+        `;
+    };
 
-for (let i = 0; i < responseArray.length; index++) {
+    const html = [];
 
-  if(responseArray[i] instanceof Manager) {
-    displayManager()
-  } else if (responseArray[i] instanceof Engineer) {
-    displayEngineer() 
-  } else if (responseArray[i] instanceof Intern) {
-    displayIntern() 
-  }
+    html.push(team
+        .filter(employee => employee.getRole() === "Manager")
+        .map(manager => generateManager(manager))
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Engineer")
+        .map(engineer => generateEngineer(engineer))
+        .join("")
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Intern")
+        .map(intern => generateIntern(intern))
+        .join("")
+    );
 
+    return html.join("");
 
+}
+
+// export function to generate entire page
+module.exports = team => {
 
     return `
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Name: ${responseArray[i]}</h5>
-              <p class="card-text">Role: </p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID: ${responseArray[(i+1)]}</li>
-              <li class="list-group-item"><a href = "mailto: ${responseArray[(i+2)]}">Email: ${responseArray[(i+2)]}</a></li>
-              <li class="list-group-item">Other: ${responseArray[(i+3)]}</li>
-            </ul>
-          </div>
-    
-          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        </body>
-    </html>
-  `;
-  }
-}
+<html lang="en">
 
-module.exports = generateHTML;
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Team</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c502137733.js"></script>
+</head>
 
-displayManager() {
-  `
-  <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Name: ${responseArray[i]}</h5>
-              <p class="card-text">Role: </p>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 jumbotron mb-3 team-heading">
+                <h1 class="text-center">My Team</h1>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID: ${responseArray[(i+1)]}</li>
-              <li class="list-group-item"><a href = "mailto: ${responseArray[(i+2)]}">Email: ${responseArray[(i+2)]}</a></li>
-              <li class="list-group-item">Other: ${responseArray[(i+3)]}</li>
-            </ul>
-          </div>
-          `
-}
-
-displayEngineer(){
-  `
-  <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Name: ${responseArray[i]}</h5>
-              <p class="card-text">Role: </p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="team-area col-12 d-flex justify-content-center">
+                ${generateTeam(team)}
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID: ${responseArray[(i+1)]}</li>
-              <li class="list-group-item"><a href = "mailto: ${responseArray[(i+2)]}">Email: ${responseArray[(i+2)]}</a></li>
-              <li class="list-group-item">Other: ${responseArray[(i+3)]}</li>
-            </ul>
-          </div>
-          `
-}
-
-displayIntern() {
-  `
-  <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Name: ${responseArray[i]}</h5>
-              <p class="card-text">Role: </p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID: ${responseArray[(i+1)]}</li>
-              <li class="list-group-item"><a href = "mailto: ${responseArray[(i+2)]}">Email: ${responseArray[(i+2)]}</a></li>
-              <li class="list-group-item">Other: ${responseArray[(i+3)]}</li>
-            </ul>
-          </div>
-          `
-}
+        </div>
+    </div>
+</body>
+</html>
+    `;
+};
