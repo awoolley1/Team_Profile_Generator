@@ -139,7 +139,7 @@ function init() {
               inputs.internname,
               inputs.internid,
               inputs.internemail,
-              inputs.interngithub
+              inputs.internschool
             );
             allEmployees.push(Intern1);
           } 
