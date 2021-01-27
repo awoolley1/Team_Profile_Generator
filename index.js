@@ -116,30 +116,30 @@ function init() {
       }
 
       if (studentTypeArray !== "Done") {
-        inquirer.prompt(studentTypeArray).then(function (responses) {
+        inquirer.prompt(studentTypeArray).then(function (inputs) {
           studentType = responses.decisiontree;
           if (studentType == "Manager") {
             var Manager1 = new Manager(
-              responses.managername,
-              responses.managerid,
-              responses.manageremail,
-              responses.manageroffice
+              inputs.managername,
+              inputs.managerid,
+              inputs.manageremail,
+              inputs.manageroffice
             );
             allEmployees.push(Manager1);
           } else if (studentType == "Engineer") {
             var Engineer1 = new Engineer(
-              responses.engineername,
-              responses.engineererid,
-              responses.engineeremail,
-              responses.engineergithub
+              inputs.engineername,
+              inputs.engineererid,
+              inputs.engineeremail,
+              inputs.engineergithub
             );
             allEmployees.push(Engineer1);
           } else if (studentType == "Intern") {
             var Intern1 = new Intern(
-              responses.internname,
-              responses.internid,
-              responses.internemail,
-              responses.interngithub
+              inputs.internname,
+              inputs.internid,
+              inputs.internemail,
+              inputs.interngithub
             );
             allEmployees.push(Intern1);
           } 
