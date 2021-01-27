@@ -129,7 +129,7 @@ function init() {
           } else if (studentType == "Engineer") {
             var Engineer1 = new Engineer(
               inputs.engineername,
-              inputs.engineererid,
+              inputs.engineerid,
               inputs.engineeremail,
               inputs.engineergithub
             );

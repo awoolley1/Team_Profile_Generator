@@ -1,4 +1,4 @@
-function EngineerTest(name, id, email, github) {
+function Engineer(name, id, email, github) {
     if (typeof name !== "string" || !name.trim().length) {
       throw new Error("Expected parameter 'name' to be a non-empty string");
     }
