@@ -6,11 +6,7 @@ const Employee = require("./library/Employee");
 const Manager = require("./library/Manager");
 const Engineer = require("./library/Engineer");
 const Intern = require("./library/Intern");
-//require 4 tests
-const EmployeeTest = require("./tests/Employee.test");
-const ManagerTest = require("./tests/Manager.test");
-const EngineerTest = require("./tests/Engineer.test");
-const InternTest = require("./tests/Intern.test");
+
 var studentType;
 
 const allEmployees = [];

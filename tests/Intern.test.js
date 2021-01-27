@@ -1,3 +1,6 @@
+const Employee = require("../library/Employee.js");
+const Intern = require("../library/Intern.js");
+
 function Intern(name, id, email, school) {
   if (typeof name !== "string" || !name.trim().length) {
     throw new Error("Expected parameter 'name' to be a non-empty string");
@@ -15,10 +18,4 @@ function Intern(name, id, email, school) {
     throw new Error("Expected parameter 'school' to be a non-empty string");
   }
 
-  this.name = name;
-  this.id = id;
-  this.email = email;
-  this.github = github;
 }
-
-module.exports = InternTest;
