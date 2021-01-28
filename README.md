@@ -18,7 +18,7 @@
 
 #### GitHub Repository: https://github.com/awoolley1/Team_Profile_Generator
 
-#### Screencapture Link: "add video link"
+#### Screencapture Link: https://drive.google.com/file/d/1sRdU_1nfpomHoKgacFmK6facVbkuBtk3/view
 
 ## Author: 
 
