@@ -1,6 +1,5 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const jest = require("jest");
 const generateHTML = require("./generateHTML");
 const Employee = require("./library/Employee");
 const Manager = require("./library/Manager");
